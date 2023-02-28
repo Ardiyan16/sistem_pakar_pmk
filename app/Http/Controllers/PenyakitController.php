@@ -44,15 +44,15 @@ class PenyakitController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $update = [
+        $id = $request->id;
+        Penyakit::find($id)->update([
             'kode_klasifikasi' => $request->kode_klasifikasi,
             'nama_penyakit' => $request->nama_penyakit,
             'keterangan_penyakit' => $request->keterangan_penyakit,
             'saran_pengobatan' => $request->saran_pengobatan
-        ];
-        Penyakit::find($id)->update($update);
+        ]);
         Alert::success('Berhasil', 'Data penyakit berhasil diperbaharui');
         return redirect('/admin-penyakit');
     }

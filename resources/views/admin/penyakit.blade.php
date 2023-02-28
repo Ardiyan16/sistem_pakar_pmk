@@ -80,7 +80,7 @@
                                     <td>{{ $value->keterangan_penyakit }}</td>
                                     <td>{{ $value->saran_pengobatan }}</td>
                                     <td>
-                                        <a href="#editdata{{ $value->id }}" data-toggle="modal" class="badge bg-primary" title="Edit" style="color: white"><i class="fa fa-edit"></i></a>
+                                        <button data-toggle="modal" data-target="#editdata" class="badge bg-primary tombol-edit" title="Edit" style="color: white" data-id="{{ $value->id }}" data-kode_klasifikasi="{{ $value->kode_klasifikasi }}" data-nama_penyakit="{{ $value->nama_penyakit }}" data-keterangan_penyakit="{{ $value->keterangan_penyakit }}" data-saran_pengobatan="{{ $value->saran_pengobatan }}"><i class="fa fa-edit"></i></button>
                                         <a href="{{ url('/admin-penyakit/hapus/' . $value->id) }}" title="Hapus" class="badge bg-danger hapus-data" style="color: white"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
@@ -92,8 +92,8 @@
         </div>
     </div>
 </div>
-@foreach ($penyakit as $data)
-<div class="modal fade" id="editdata{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+<div class="modal fade" id="editdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -103,24 +103,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('/admin-penyakit', $data->id) }}" method="POST" name="edit_penyakit">
-                    @method('PUT')
+                <form action="{{ url('/admin-penyakit/update') }}" method="POST" name="edit_penyakit">
                     @csrf
                     <div class="form-group">
                         <label>Kode Klasifikasi</label>
-                        <input type="text" class="form-control" name="kode_klasifikasi" value="{{ $data->kode_klasifikasi }}" id="kode_klasifikasi" aria-describedby="emailHelp" placeholder="Isikan Kode">
+                        <input type="hidden" name="id" id="id" value="">
+                        <input type="text" class="form-control kode-klasifikasi" name="kode_klasifikasi" id="kode_klasifikasi" placeholder="Isikan Kode">
                     </div>
                     <div class="form-group">
                         <label>Nama Penyakit</label>
-                        <input type="text" class="form-control" id="nama_penyakit" value="{{ $data->nama_penyakit }}" name="nama_penyakit" placeholder="Nama Penyakit">
+                        <input type="text" class="form-control nama-penyakit" id="nama_penyakit" name="nama_penyakit" placeholder="Nama Penyakit">
                     </div>
                     <div class="form-group">
                         <label>Keterangan Penyakit</label>
-                        <textarea class="form-control" rows="5" name="keterangan_penyakit" placeholder="Keterangan Penyakit">{{ $data->keterangan_penyakit }}</textarea>
+                        <textarea class="form-control keterangan-penyakit" rows="5" name="keterangan_penyakit" id="keterangan_penyakit" placeholder="Keterangan Penyakit"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Saran/Solusi</label>
-                        <textarea class="form-control" rows="5" name="saran_pengobatan" placeholder="Saran/Solusi">{{ $data->saran_pengobatan }}</textarea>
+                        <textarea class="form-control" rows="5" name="saran_pengobatan" id="saran_pengobatan" placeholder="Saran/Solusi"></textarea>
                     </div>
                     <hr>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
@@ -132,7 +132,6 @@
         </div>
     </div>
 </div>
-@endforeach
 <script>
     $(document).ready(function () {
         $('.form-tambah-penyakit').hide();
@@ -144,7 +143,19 @@
         $('.tutup-form').click(function() {
             $('.form-tambah-penyakit').hide();
         })
+    })
 
+    $(document).on('click', '.tombol-edit', function() {
+        let id = $(this).attr('data-id');
+        let kode_klasifikasi = $(this).attr('data-kode_klasifikasi');
+        let nama_penyakit = $(this).attr('data-nama_penyakit');
+        let keterangan_penyakit = $(this).attr('data-keterangan_penyakit');
+        let saran_pengobatan = $(this).attr('data-saran_pengobatan');
+        $('#id').val(id);
+        $('.kode-klasifikasi').val(kode_klasifikasi);
+        $('.nama-penyakit').val(nama_penyakit);
+        $('#keterangan_penyakit').val(keterangan_penyakit);
+        $('#saran_pengobatan').val(saran_pengobatan);
     })
 
     $(function() {

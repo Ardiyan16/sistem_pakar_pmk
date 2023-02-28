@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGejalasTable extends Migration
+class CreateKnowladgesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGejalasTable extends Migration
      */
     public function up()
     {
-        Schema::create('gejalas', function (Blueprint $table) {
+        Schema::create('knowladges', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_gejala', 10);
-            $table->string('gejala');
+            $table->string('kd_diagnosa', 5);
+            $table->string('kd_gejala', 5);
+            $table->string('nilai_mb', 5);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateGejalasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gejalas');
+        Schema::dropIfExists('knowladges');
     }
 }

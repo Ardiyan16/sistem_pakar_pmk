@@ -39,7 +39,7 @@ class LoginController extends Controller
 
         Alert::success('Berhasil Logout', 'anda berhasil logout');
 
-        return redirect('/admin-login');
+        return redirect('/');
     }
 
 }

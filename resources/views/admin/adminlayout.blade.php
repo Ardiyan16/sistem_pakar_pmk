@@ -16,6 +16,8 @@
     <script src="{{ url('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     {{-- <script src="{{ url('vendor/jquery-validation/jquery.validate.min.js') }}"></script> --}}
 </head>
 <style>
@@ -54,15 +56,27 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ url('/admin-gejala') }}">
             <i class="fa-solid fa-thermometer"></i>
           <span>Gejala</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ url('/admin-bobot') }}">
+            <i class="fa fa-calculator"></i>
+          <span>Bobot Keyakinan</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/admin-rules') }}">
             <i class="fa-solid fa-code-compare"></i>
           <span>Rule</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/admin-rules') }}">
+            <i class="fas fa-book-open"></i>
+          <span>Knowladge</span>
         </a>
       </li>
     </ul>
