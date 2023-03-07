@@ -62,7 +62,7 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($gejalas as $value)
+                            @foreach ($gejala as $value)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $value->kode_gejala }}</td>

@@ -53,7 +53,7 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{{ url('/') }}">Home</a></li>
+          <li><a href="{{ url('/') }}">Beranda</a></li>
           <li><a href="{{ url('/sp-informasi') }}">Informasi</a></li>
           <li><a href="{{ url('/sp-konsultasi') }}">Konsultasi</a></li>
           <li><a href="{{ url('/sp-riwayat') }}">Riwayat</a></li>
