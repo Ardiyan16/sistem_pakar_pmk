@@ -183,18 +183,18 @@
     $(function() {
         $("form[name='add_rule']").validate({
             rules: {
-                kode_gejala: {
+                kd_gejala: {
                     required: true
                 },
-                kode_penyakit: {
+                kd_penyakit: {
                     required: true,
                 }
             },
             messages: {
-                kode_gejala: {
+                kd_gejala: {
                     required: "kode gejala is required (kode gejala harus di isi)"
                 },
-                kode_penyakit: {
+                kd_penyakit: {
                     required: "kode penyakit is required (kode penyakit harus di isi)",
                 }
             },
@@ -205,21 +205,21 @@
     });
 
     $(function() {
-        $("form[name='edit_gejala']").validate({
+        $("form[name='edit_rule']").validate({
             rules: {
-                kode_gejala: {
+                kd_gejala: {
                     required: true
                 },
-                gejala: {
+                kd_penyakit: {
                     required: true,
                 }
             },
             messages: {
-                kode_gejala: {
+                kd_gejala: {
                     required: "kode gejala is required (kode gejala harus di isi)"
                 },
-                gejala: {
-                    required: "gejala is required (nama penyakit harus di isi)",
+                kd_penyakit: {
+                    required: "kode penyakit is required (kode penyakit harus di isi)",
                 }
             },
             submitHandler: function(form) {

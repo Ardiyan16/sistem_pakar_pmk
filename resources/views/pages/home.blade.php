@@ -18,32 +18,32 @@
 
         <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
           <div class="icon-box">
-            <div class="icon"><i class="bi bi-easel"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
+            <div class="icon"><i class="fa fa-info"></i></div>
+            <h4 class="title"><a href="{{ url('/sp-informasi') }}" class="stretched-link">Informasi</a></h4>
           </div>
         </div>
         <!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <div class="icon-box">
-            <div class="icon"><i class="bi bi-gem"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Sed ut perspiciatis</a></h4>
+            <div class="icon"><i class="fa fa-stethoscope"></i></div>
+            <h4 class="title"><a href="{{ url('/sp-konsultasi') }}" class="stretched-link">Konsultasi</a></h4>
           </div>
         </div>
         <!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div class="icon-box">
-            <div class="icon"><i class="bi bi-geo-alt"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Magni Dolores</a></h4>
+            <div class="icon"><i class="fa fa-history"></i></div>
+            <h4 class="title"><a href="{{ url('/sp-riwayat') }}" class="stretched-link">Riwayat Konsultasi</a></h4>
           </div>
         </div>
         <!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
           <div class="icon-box">
-            <div class="icon"><i class="bi bi-command"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Nemo Enim</a></h4>
+            <div class="icon"><i class="fa fa-phone"></i></div>
+            <h4 class="title"><a href="{{ url('/sp-kontak') }}" class="stretched-link">Kontak</a></h4>
           </div>
         </div>
         <!--End Icon Box -->
@@ -59,31 +59,49 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h2>About Us</h2>
-        <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat sunt id nobis omnis tiledo stran delop</p>
+        <h2>Tentang SP-PMK</h2>
+        <p>Sistem Pakar Penyakit Mulut dan Kuku pada Sapi</p>
       </div>
 
       <div class="row gy-4">
         <div class="col-lg-6">
-          <h3>Voluptatem dignissimos provident quasi corporis</h3>
+          <h3>Apa Itu Sistem Pakar Penyakit Mulut dan Kuku Sapi ?</h3>
           <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
-          <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-          <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque deleniti repellendus.</p>
+          <p>Penyakit Mulut dan Kuku (PMK) adalah penyakit hewan yang sangat menular
+            yang paling ditakuti di dunia dan menyerang semua hewan berkuku ganda atau
+            belah (cloven hoop). PMK di Indonesia pertama kali dilaporkan terjadi di daerah
+            Malang Jawa Timur pada tahun 1987. Namun pada tahun 1990, Indonesia berhasil
+            dibebaskan kembali dari PMK yang status bebasnya dinyatakan dalam Resolusi
+            OIE no XI tahun 1990 (Ditkeswan 2014)</p>
+            <p>
+                Sistem pakar dibuat
+                dengan pengambilan keputusan suatu masalah yang didukung oleh data yang akurat
+                dengan metode penyelesaian yang tepat. Data yang dimaksud adalah data penyakit
+                mulut dan kuku (PMK) yang menyerang sapi di Kabupaten Bondowoso, gejalagejala yang dialami, dan cara pengobatannya. Salah satu informasi yang dapat
+                memanfaatkan sistem pakar sebagai solusinya adalah sistem pakar mengenai
+                penyakit mulut dan kuku (PMK) pada sapi. Berdasarkan pemaparan tersebut, maka
+                penulis akan melakukan penelitian tentang Sistem Pakar yang dapat membantu user
+                atau peternak sapi dalam mengetahui kemungkinan seekor sapi menderita PMK
+                beserta cara pengobatannya, dimana nantinya sistem ini akan dikembangkan
+                dengan metode faktor kepastian (Certainty Factor).
+            </p>
         </div>
         <div class="col-lg-6">
           <div class="content ps-0 ps-lg-5">
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+                Berikut merupakan kelebihan atau keuntungan dengan adanya sistem pakar penyakit mulut dan kuku
             </p>
             <ul>
-              <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bi bi-check-circle-fill"></i> Memberikan kemudahan kepada peternak sapi untuk mengetahui kemungkinan
+                sapi terserang penyakit mulut dan kuku.</li>
+              <li><i class="bi bi-check-circle-fill"></i> Membantu dokter hewan dalam menangani penyakit mulut dan kuku pada sapi
+                serta memberikan cara pengobatannya.</li>
+              <li><i class="bi bi-check-circle-fill"></i> Hasil penelitian diharapkan dapat dijadikan bahan acuan atau masukan untuk
+                penelitian selanjutnya dalam melakukan penelitian mengenai sistem pakar diagnosa
+                penyakit mulut dan kuku pada sapi dengan lebih baik.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                Dengan adanya Sistem Pakar Penyakit Mulut dan Kuku ini dapat membantu para masyarakat yang mengalami permasalahan tentang hewan ternak yang sedang mengalami gejala-gejala penyakit mulut dan kuku.
             </p>
           </div>
         </div>

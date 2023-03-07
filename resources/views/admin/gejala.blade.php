@@ -175,7 +175,7 @@
                     required: "kode gejala is required (kode gejala harus di isi)"
                 },
                 gejala: {
-                    required: "gejala is required (nama penyakit harus di isi)",
+                    required: "gejala is required (gejala harus di isi)",
                 }
             },
             submitHandler: function(form) {

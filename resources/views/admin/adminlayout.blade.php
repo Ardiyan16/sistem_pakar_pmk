@@ -74,9 +74,21 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/admin-rules') }}">
+        <a class="nav-link" href="{{ url('/admin-knowladge') }}">
             <i class="fas fa-book-open"></i>
           <span>Knowladge</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/admin-riwayat') }}">
+            <i class="fas fa-history"></i>
+          <span>Riyawat Konsultasi</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/admin-pesan') }}">
+            <i class="fa fa-envelope"></i>
+          <span>Pesan (Kritik, Saran, dan Masukan)</span>
         </a>
       </li>
     </ul>

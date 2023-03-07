@@ -24,6 +24,11 @@
   <link href="{{ url('pages/assets/vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ url('pages/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ url('pages/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+
 
   <!-- Template Main CSS File -->
   <link href="{{ url('pages/assets/css/main.css') }}" rel="stylesheet">
@@ -37,7 +42,7 @@
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
 
   <header id="header" class="header d-flex align-items-center">
 
@@ -49,10 +54,10 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{{ url('/') }}">Home</a></li>
-          <li><a href="#about">Informasi</a></li>
-          <li><a href="#services">Konsultasi</a></li>
-          <li><a href="#portfolio">Riwayat</a></li>
-          <li><a href="#contact">Kontak</a></li>
+          <li><a href="{{ url('/sp-informasi') }}">Informasi</a></li>
+          <li><a href="{{ url('/sp-konsultasi') }}">Konsultasi</a></li>
+          <li><a href="{{ url('/sp-riwayat') }}">Riwayat</a></li>
+          <li><a href="{{ url('/sp-kontak') }}">Kontak</a></li>
           <li><a href="{{ url('/admin-login') }}">Masuk</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -74,57 +79,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-lg-5 col-md-12 footer-info">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span>Impact</span>
-          </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-          <div class="social-links d-flex mt-4">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
 
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
-          </p>
-
-        </div>
-
-      </div>
-    </div>
 
     <div class="container mt-4">
       <div class="copyright">
@@ -136,6 +91,7 @@
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <p>Website by Shinta Destira Ayu
       </div>
     </div>
 
