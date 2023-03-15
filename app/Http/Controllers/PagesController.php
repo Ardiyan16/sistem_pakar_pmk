@@ -45,6 +45,50 @@ class PagesController extends Controller
         return view('pages.konsultasi', $var);
     }
 
+
+    public function action_konsultasi(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'nama' => 'required',
+            'usia' => 'required',
+            'alamat' => 'required',
+        ], [
+            'nama.required' => 'Nama Lengkap is required (Nama Lengkap harus diisi)',
+            'usia.required' => 'Usia is required (Usia harus diisi)',
+            'alamat.required' => 'Alamat is required (Alamat harus diisi)'
+        ]);
+
+        $data = $request->all();
+        $get_data = $this->perhitungan_diagnosa($data);
+
+    }
+
+    private function perhitungan_diagnosa($data)
+    {
+        $data_penyakit = [];
+        $gejala_dipilih = [];
+        foreach($data['bobot_gejala'] as $value) {
+            if(!empty($value)) {
+                $opts = explode('+', $value);
+                $gejala = Knowladge::where('kd_gejala' ,$opts[0])->first();
+
+                if(empty($data_penyakit[$gejala->kd_diagnosa])) {
+                    $data_penyakit[$gejala->kd_diagnosa] = [$gejala, [$gejala, $opts[1], $gejala->nilai_mb]];
+                } else {
+                    array_push($data_penyakit[$gejala->kd_diagnosa], [$gejala, $opts[1], $gejala->nilai_mb]);
+                }
+            }
+        }
+        dd($data_penyakit);
+    }
+
+    public function hasil_konsultasi()
+    {
+        $var['title'] = 'SP-PMK | Hasil Konsultasi';
+
+    }
+
     //Function Halaman Kontak
     public function kontak()
     {

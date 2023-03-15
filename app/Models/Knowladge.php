@@ -9,8 +9,8 @@ class Knowladge extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'kd_gejala',
         'kd_diagnosa',
+        'kd_gejala',
         'nilai_mb'
     ];
 }

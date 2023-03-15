@@ -25,6 +25,8 @@ use App\Http\Controllers\KnowladgeController;
 Route::get('/', [PagesController::class, 'index'])->name('Home');
 Route::get('/sp-informasi', [PagesController::class, 'informasi'])->name('Informasi');
 Route::get('/sp-konsultasi', [PagesController::class, 'konsultasi'])->name('Konsultasi');
+Route::post('/sp-konsultasi/action', [PagesController::class, 'action_konsultasi'])->name('ActionKonsultasi');
+Route::get('/sp-hasilkonsultasi', [PagesController::class, 'hasil_konsultasi'])->name('HasilKonsultasi');
 Route::get('/sp-riwayat', [PagesController::class, 'riwayat'])->name('Riwayat');
 Route::get('/sp-kontak', [PagesController::class, 'kontak'])->name('Kontak');
 Route::post('/sp-kontak/send', [PagesController::class, 'kirim_pesan'])->name('KirimPesan');
