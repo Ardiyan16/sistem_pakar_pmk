@@ -26,11 +26,10 @@ Route::get('/', [PagesController::class, 'index'])->name('Home');
 Route::get('/sp-informasi', [PagesController::class, 'informasi'])->name('Informasi');
 Route::get('/sp-konsultasi', [PagesController::class, 'konsultasi'])->name('Konsultasi');
 Route::post('/sp-konsultasi/action', [PagesController::class, 'action_konsultasi'])->name('ActionKonsultasi');
-Route::get('/sp-hasilkonsultasi', [PagesController::class, 'hasil_konsultasi'])->name('HasilKonsultasi');
+Route::get('/sp-hasilkonsultasi/{id}', [PagesController::class, 'hasil_konsultasi'])->name('HasilKonsultasi');
 Route::get('/sp-riwayat', [PagesController::class, 'riwayat'])->name('Riwayat');
 Route::get('/sp-kontak', [PagesController::class, 'kontak'])->name('Kontak');
 Route::post('/sp-kontak/send', [PagesController::class, 'kirim_pesan'])->name('KirimPesan');
-
 
 //admin routes
 Route::get('/admin-login', [LoginController::class, 'index'])->name('Login')->middleware('guest');
@@ -53,4 +52,6 @@ Route::resource('/admin-knowladge', KnowladgeController::class)->middleware('aut
 Route::post('/admin-knowladge/update', [KnowladgeController::class, 'update'])->middleware('auth');
 Route::get('/admin-knowladge/hapus/{id}', [KnowladgeController::class, 'destroy'])->middleware('auth');
 Route::get('/admin-pesan', [AdminController::class, 'pesan'])->middleware('auth');
+Route::get('/admin-riwayat', [AdminController::class, 'riwayat'])->middleware('auth');
+
 

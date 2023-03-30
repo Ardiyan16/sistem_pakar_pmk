@@ -16,15 +16,11 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span>Since last month</span>
-                            </div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Jumlah Kunjungan Konsultasi</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_kunjungan }}</div>
                         </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-primary"></i>
+                        <i class="fas fa-users fa-2x text-primary"></i>
                     </div>
                 </div>
             </div>
@@ -36,15 +32,11 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                <div class="mt-2 mb-0 text-muted text-xs">
-                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                  <span>Since last years</span>
-                </div>
+                <div class="text-xs font-weight-bold text-uppercase mb-1">Total Penyakit</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_penyakit }}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                <i class="fas fa-virus fa-2x text-success"></i>
               </div>
             </div>
           </div>
@@ -56,15 +48,11 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                <div class="mt-2 mb-0 text-muted text-xs">
-                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                  <span>Since last month</span>
-                </div>
+                <div class="text-xs font-weight-bold text-uppercase mb-1">Total Gejala</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $total_gejala }}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-users fa-2x text-info"></i>
+                <i class="fas fa-stethoscope fa-2x text-info"></i>
               </div>
             </div>
           </div>
@@ -76,15 +64,11 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                <div class="mt-2 mb-0 text-muted text-xs">
-                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                  <span>Since yesterday</span>
-                </div>
+                <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pesan</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_pesan }}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-warning"></i>
+                <i class="fas fa-envelope fa-2x text-warning"></i>
               </div>
             </div>
           </div>
