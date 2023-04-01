@@ -36,6 +36,7 @@ class AdminController extends Controller
         $var['kunjungan'] = DB::table('kunjungans')
                             ->select('kunjungans.*', 'penyakits.nama_penyakit', 'penyakits.keterangan_penyakit', 'penyakits.saran_pengobatan')
                             ->leftJoin('penyakits', 'kunjungans.hasil', '=', 'penyakits.kode_klasifikasi')
+                            ->orderBy('id', 'DESC')
                             ->get();
         return view('admin.riwayat', $var);
     }

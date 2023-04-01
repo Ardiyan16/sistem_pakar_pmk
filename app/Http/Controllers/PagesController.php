@@ -261,6 +261,7 @@ class PagesController extends Controller
         $var['kunjungan'] = DB::table('kunjungans')
                             ->select('kunjungans.*', 'penyakits.nama_penyakit', 'penyakits.keterangan_penyakit', 'penyakits.saran_pengobatan')
                             ->leftJoin('penyakits', 'kunjungans.hasil', '=', 'penyakits.kode_klasifikasi')
+                            ->orderBy('id', 'DESC')
                             ->get();
         // $var['detail_kunjungan'] = DB::table('gejala_terpilihs')
         //                     ->select('gejala_terpilihs.*', 'gejalas.gejala')
