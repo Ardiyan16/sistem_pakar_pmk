@@ -159,6 +159,8 @@ class PagesController extends Controller
             }
         }
 
+        // dd($nilai_hasil);die;
+
         return [
             'data_diagnosa' => $data_diagnosa,
             'nilai_hasil'   => $nilai_hasil,
