@@ -55,27 +55,23 @@ class PagesController extends Controller
             if(!empty($value)) {
                 $opts = explode('+', $value);
                 $data_gejala[] = $opts[0];
-                $gejala = DB::table('knowladges')->where('kd_gejala' ,$opts[0])->get();
+                $gejala = DB::table('knowladges')->where('kd_gejala' ,$opts[0])->first();
 
-                foreach($gejala as $valuegejala) {
-                    if(empty($data_penyakit[$valuegejala->kd_diagnosa])) {
-                        $data_penyakit[$valuegejala->kd_diagnosa] = [$valuegejala, [$valuegejala, $opts[1], $valuegejala->nilai_mb, $valuegejala->kd_diagnosa, $valuegejala->kd_gejala]];
-                    } else {
-                        array_push($data_penyakit[$valuegejala->kd_diagnosa], [$valuegejala, $opts[1], $valuegejala->nilai_mb, $valuegejala->kd_diagnosa, $valuegejala->kd_gejala]);
-                    }
+                if(empty($data_penyakit[$gejala->kd_diagnosa])) {
+                    $data_penyakit[$gejala->kd_diagnosa] = [$gejala, [$gejala, $opts[1], $gejala->nilai_mb, $gejala->kd_diagnosa]];
+                } else {
+                    array_push($data_penyakit[$gejala->kd_diagnosa], [$gejala, $opts[1], $gejala->nilai_mb, $gejala->kd_diagnosa]);
                 }
             }
         }
 
-        // dd($data_penyakit);die;
-        // if(count($data_penyakit['P01']) >= 2 || count($data_penyakit[''])
+        dd($data_penyakit);die;
 
         $hasil_diagnosa = [];
         $cf_value = null;
-        // $p01 = 0;
-        // $p02 = 0;
+        $p01 = 0;
+        $p02 = 0;
         foreach($data_penyakit as $final) {
-            // dd($final);die;
             if(count($final) < 3) {
                 continue;
             }
@@ -124,7 +120,7 @@ class PagesController extends Controller
                             : $cf_value;
                     }
 
-                    $hasil_diagnosa[$final[0]->kd_diagnosa]['hasil_cf'] = $hasil_cf * 100;
+                    $hasil_diagnosa[$final[0]->id]['hasil_cf'] = $hasil_cf * 100;
 
                     $cf1 = null;
                     $cf2 = null;
@@ -132,73 +128,45 @@ class PagesController extends Controller
                     $hasil_cf = null;
                 }
 
-                // if($key > 0) {
+                if($key > 0) {
 
-                //     if($final[$key][3] == 'P01') {
-                //         $p01 += 1;
-                //     } else {
-                //         $p02 += 1;
-                //     }
+                    if($final[$key][3] == 'P01') {
+                        $p01 += 1;
+                    } else {
+                        $p02 += 1;
+                    }
 
-                //     if($p01 > $p02) {
-                //         $kd_diagnosa = 'P01';
-                //     } else if ($p01 == $p02) {
-                //         $kd_diagnosa = 'P01';
-                //     } else {
-                //         $kd_diagnosa = 'P02';
-                //     }
+                    if($p01 > $p02) {
+                        $kd_diagnosa = 'P01';
+                    } else if ($p01 == $p02) {
+                        $kd_diagnosa = 'P01';
+                    } else {
+                        $kd_diagnosa = 'P02';
+                    }
 
-                // }
+                }
 
-                if(empty($hasil_diagnosa[$final[0]->kd_diagnosa])) {
-                        $hasil_diagnosa[$final[0]->kd_diagnosa] = [
+                if(empty($hasil_diagnosa[$final[0]->id])) {
+                        $hasil_diagnosa[$final[0]->id] = [
                             // 'nama_penyakit' => $final[0]->kd_penyakit,
-                            'kode_penyakit' => $final[0]->kd_diagnosa,
+                            'kode_penyakit' => $kd_diagnosa,
                             'hasil_cf' => $hasil_cf * 100
                         ];
                 }
 
-            }
-        }
-        if(count($hasil_diagnosa) == 1) {
-            if($hasil_diagnosa) {
-                $data_diagnosa = $hasil_diagnosa[$final[0]->kd_diagnosa]['kode_penyakit'];
-                $nilai_hasil = $hasil_diagnosa[$final[0]->kd_diagnosa]['hasil_cf'];
-                $data_diagnosa2 = '-';
-                $nilai_hasil2 = '0';
-            }
-        } else {
-            if($hasil_diagnosa['P01']['hasil_cf'] > $hasil_diagnosa['P02']['hasil_cf']) {
-                $data_diagnosa = $hasil_diagnosa['P01']['kode_penyakit'];
-                $nilai_hasil = $hasil_diagnosa['P01']['hasil_cf'];
-                $data_diagnosa2 = $hasil_diagnosa['P02']['kode_penyakit'];
-                $nilai_hasil2 = $hasil_diagnosa['P02']['hasil_cf'];
-            }
-            // else if($hasil_diagnosa['P01']['hasil_cf'] = $hasil_diagnosa['P02']['hasil_cf']) {
-            //     $data_diagnosa = $hasil_diagnosa['P01']['kode_penyakit'];
-            //     $nilai_hasil = $hasil_diagnosa['P01']['hasil_cf'];
-            //     $data_diagnosa2 = $hasil_diagnosa['P02']['kode_penyakit'];
-            //     $nilai_hasil2 = $hasil_diagnosa['P02']['hasil_cf'];
-            // }
-            else if($hasil_diagnosa['P02']['hasil_cf'] > $hasil_diagnosa['P01']['hasil_cf']) {
-                $data_diagnosa = $hasil_diagnosa['P02']['kode_penyakit'];
-                $nilai_hasil = $hasil_diagnosa['P02']['hasil_cf'];
-                $data_diagnosa2 = $hasil_diagnosa['P01']['kode_penyakit'];
-                $nilai_hasil2 = $hasil_diagnosa['P01']['hasil_cf'];
+                $data_diagnosa = $hasil_diagnosa[$final[0]->id]['kode_penyakit'];
+                $nilai_hasil = $hasil_diagnosa[$final[0]->id]['hasil_cf'];
             }
         }
 
-        // dd([$data_diagnosa, $nilai_hasil, $data_diagnosa2, $nilai_hasil2]);die;
+        dd($hasil_diagnosa);die;
 
         return [
             'data_diagnosa' => $data_diagnosa,
             'nilai_hasil'   => $nilai_hasil,
-            'data_diagnosa2' => $data_diagnosa2,
-            'nilai_hasil2'   => $nilai_hasil2,
             'data_gejala'   => $data_gejala
         ];
     }
-
 
     public function action_konsultasi(Request $request)
     {
@@ -221,9 +189,7 @@ class PagesController extends Controller
             'usia'          => $request->usia,
             'alamat'        => $request->alamat,
             'hasil'         => $get_data['data_diagnosa'],
-            'nilai_hasil'   => $get_data['nilai_hasil'],
-            'hasil_2'         => $get_data['data_diagnosa2'],
-            'nilai_hasil_2'   => $get_data['nilai_hasil2']
+            'nilai_hasil'   => $get_data['nilai_hasil']
         ];
         Kunjungan::create($kunjungan);
         $id_kunjungan = DB::table('kunjungans')
@@ -307,3 +273,4 @@ class PagesController extends Controller
     }
 
 }
+

@@ -13,6 +13,8 @@ class Kunjungan extends Model
         'usia',
         'alamat',
         'hasil',
-        'nilai_hasil'
+        'nilai_hasil',
+        'hasil_2',
+        'nilai_hasil_2'
     ];
 }

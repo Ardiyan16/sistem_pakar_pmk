@@ -34,7 +34,17 @@
             @foreach ($detail_kunjungan as $value)
                 <p><strong>{{ $value->id_gejala }}</strong> => {{ $value->gejala }}</p><br>
             @endforeach
-
+            @if ($kunjungan->nilai_hasil_2 != 0)
+                <div class="stats-item d-flex align-items-center">
+                    <p>Sedangkan pada penyakit <strong>@php
+                        if($kunjungan->hasil_2 == 'P01') {
+                            echo 'PMK Gejala Klinis Ringan';
+                        } else {
+                            echo 'PMK Gejala Klinis Berat';
+                        }
+                    @endphp</strong> memperoleh hasil presentasi  <strong style="color: #008374">{{ $kunjungan->nilai_hasil_2 }}%</strong></p>
+                </div><!-- End Stats Item -->
+            @endif
           {{-- <div class="stats-item d-flex align-items-center">
             <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1" class="purecounter"></span>
             <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
