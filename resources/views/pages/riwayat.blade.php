@@ -12,9 +12,9 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama</th>
+                    {{-- <th>Nama</th>
                     <th>Usia</th>
-                    <th>Alamat</th>
+                    <th>Alamat</th> --}}
                     <th>Diagnosa</th>
                     <th>Nilai Diagnosa</th>
                     <th>Option</th>
@@ -27,9 +27,9 @@
                 @foreach ($kunjungan as $value)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $value->nama }}</td>
+                        {{-- <td>{{ $value->nama }}</td>
                         <td>{{ $value->usia }}</td>
-                        <td>{{ $value->alamat }}</td>
+                        <td>{{ $value->alamat }}</td> --}}
                         <td>{{ $value->nama_penyakit }}</td>
                         <td>{{ $value->nilai_hasil }}</td>
                         <td><a href="#gejala_dipilih{{ $value->id }}" data-bs-toggle="modal" class="btn btn-success btn-sm" title="gejala yang dipilih"><i class="fa fa-eye"></i></td>

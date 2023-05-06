@@ -36,7 +36,16 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $value->keterangan}}</td>
-                                        <td>{{ $value->nilai_bobot }}</td>
+                                        @php
+                                            $nilai_depan = $value->nilai_bobot + 0.1;
+                                        @endphp
+                                        <td>
+                                            @if ($value->id != 1)
+                                                {{ $nilai_depan }} - {{ $value->nilai_bobot }}
+                                            @else
+                                                {{ $value->nilai_bobot }}
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -49,7 +58,7 @@
 
         <form action="{{ url('/sp-konsultasi/action') }}" method="post">
             @csrf
-            <div class="row gx-lg-0 gy-4">
+            {{-- <div class="row gx-lg-0 gy-4">
                 @if (count($errors) > 0)
                     <div class = "alert alert-danger">
                         <ul>
@@ -68,9 +77,9 @@
                 <div class="form-group mt-3">
                     <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
                 </div>
-            </div><!-- End Contact Form -->
+            </div><!-- End Contact Form --> --}}
 
-            <div class="row gx-lg-0 gy-4 mt-5">
+            <div class="row gx-lg-0 gy-4 mt-3">
                 <div class="row">
                     <table class="table table-success table-striped">
                         <thead>
@@ -92,7 +101,16 @@
                                         <select name="bobot_gejala[]" class="form-control">
                                             <option value="" selected>Tidak</option>
                                             @foreach ($bobot as $data)
-                                                <option value="{{ $value->kode_gejala }}+{{ $data->nilai_bobot }}">{{ $data->keterangan }}</option>
+                                                @php
+                                                    $nilai_dpn = $data->nilai_bobot + 0.1;
+                                                @endphp
+                                                <option value="{{ $value->kode_gejala }}+{{ $data->nilai_bobot }}">
+                                                    @if ($data->id != 1)
+                                                        {{ $data->keterangan. ' (' . $nilai_dpn . ' - ' . $data->nilai_bobot .')' }}
+                                                    @else
+                                                        {{ $data->keterangan. ' (' . $data->nilai_bobot .')' }}
+                                                    @endif
+                                                </option>
                                             @endforeach
                                         </select>
                                     </th>

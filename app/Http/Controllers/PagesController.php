@@ -20,6 +20,8 @@ class PagesController extends Controller
     public function index()
     {
         $var['title'] = 'SP-PMK | Home';
+        $var['penyakit_muncul'] = DB::select("SELECT kunjungans.*, penyakits.nama_penyakit, count(cast(hasil as unsigned)) as jml_kunjungan FROM kunjungans JOIN penyakits ON kunjungans.hasil = penyakits.kode_klasifikasi GROUP BY kunjungans.hasil ORDER BY jml_kunjungan DESC");
+        // dd($var['penyakit_muncul']);
         return view('pages.home', $var);
     }
 
@@ -68,13 +70,15 @@ class PagesController extends Controller
         //     }
         // }
 
-        // dd(count($data_penyakit['P02']) < 3);die;
+        // dd($data);
         // dd(count($data_penyakit['P02']));die;
             $cf_value = null;
             // $p01 = 0;
             // $p02 = 0;
             // $i = 0;
-            if(count($data['P01']) >= 3 && count($data['P02']) >= 3) {
+            $count_p01 = count($data['P01']) ?? '0';
+            $count_p02 = count($data['P02']) ?? '0';
+            if($count_p01 >= 3 && $count_p02 >= 3) {
                 foreach($data as $final) {
                     // dd($final);die;
                     if(count($final) < 3) {
@@ -155,14 +159,13 @@ class PagesController extends Controller
                         $nilai_hasil2 = $hasil_diagnosa['P01']['hasil_cf'];
                     }
                     else if($hasil_diagnosa['P01']['hasil_cf'] = $hasil_diagnosa['P02']['hasil_cf']) {
-                        $data_diagnosa = $hasil_diagnosa['P01']['kode_penyakit'];
-                        $nilai_hasil = $hasil_diagnosa['P01']['hasil_cf'];
-                        $data_diagnosa2 = $hasil_diagnosa['P02']['kode_penyakit'];
-                        $nilai_hasil2 = $hasil_diagnosa['P02']['hasil_cf'];
+                        $data_diagnosa = $hasil_diagnosa['P02']['kode_penyakit'];
+                        $nilai_hasil = $hasil_diagnosa['P02']['hasil_cf'];
+                        $data_diagnosa2 = $hasil_diagnosa['P01']['kode_penyakit'];
+                        $nilai_hasil2 = $hasil_diagnosa['P01']['hasil_cf'];
                     }
                 }
-            }
-            else {
+            } else {
                 foreach($data as $final) {
                     // dd($final);die;
                     if(count($final) >= 3) {
@@ -261,19 +264,103 @@ class PagesController extends Controller
 
     }
 
+    private function perhitungan_diagnosa2($data)
+    {
+        foreach($data as $final) {
+            // dd($final);
+            if(count($final) >= 3) {
+                $cf1 = null;
+                $cf2 = null;
+                $cf_value = null;
+                $cf_combine = 0;
+                $hasil_cf = null;
+                $hasil_diagnosa = [];
+                foreach($final as $key => $value) {
+                    // if($key > 0) {
+                    //     $data_test[] = $final[$key][3];
+                    // }
+                    if($key == 0) {
+                        continue;
+                    } else {
+                        if($cf_combine != 0) {
+                            $cf1 = $cf_combine ;
+                            $cf2 = $final[$key][2] * $final[$key][1];
 
+                            if($cf1 < 0 || $cf2 < 0) {
+                                $cf_combine = ($cf1 + $cf2) / (1 - min($cf1, $cf2));
+                            } else {
+                                $cf_combine = $cf1 + ($cf2 * (1 - $cf1));
+                            }
+
+                            $hasil_cf = $cf_combine;
+                        } else {
+                            $cf2  = $final[$key][2] * $final[$key][1];
+
+                            if($cf1 < 0 || $cf2 < 0) {
+                                $cf_combine = ($cf1 + $cf2) / (1 - min($cf1, $cf2));
+                            } else {
+                                $cf_combine = $cf1 + ($cf2 * (1 - $cf1));
+                            }
+
+                            $hasil_cf = $cf_combine;
+                        }
+                    }
+
+                    if(count($final) - 1 == $key) {
+                        if($cf_value == null) {
+                            $cf_value = [$hasil_cf, "{$final[0]->kd_diagnosa} ({$final[0]->kd_gejala})"];
+                        } else {
+                            $cf_value = ($hasil_cf > $cf_value[0])
+                                ? [$hasil_cf, "{$final[0]->kd_diagnosa} ({$final[0]->kd_gejala})"]
+                                : $cf_value;
+                        }
+
+                        $hasil_diagnosa[$final[0]->kd_diagnosa] = [
+                            'kode_penyakit' => $final[0]->kd_diagnosa,
+                            'hasil_cf' => $hasil_cf * 100,
+                        ];
+
+                        $cf1 = null;
+                        $cf2 = null;
+                        $cf_combine = 0;
+                        $hasil_cf = null;
+                    }
+
+                }
+            }
+
+        }
+
+        if($hasil_diagnosa[$final[0]->kd_diagnosa]) {
+            $data_diagnosa = $hasil_diagnosa[$final[0]->kd_diagnosa]['kode_penyakit'];
+            $nilai_hasil = $hasil_diagnosa[$final[0]->kd_diagnosa]['hasil_cf'];
+            $data_diagnosa2 = '-';
+            $nilai_hasil2 = '0';
+        }
+        // dd([$data_diagnosa, $nilai_hasil]);
+
+
+        return [
+            'data_diagnosa' => $data_diagnosa,
+            'nilai_hasil'   => $nilai_hasil,
+            'data_diagnosa2' => $data_diagnosa2,
+            'nilai_hasil2'   => $nilai_hasil2,
+        ];
+    }
+
+
+    // dd($request);
+    // $request->validate([
+    //     'nama' => 'required',
+    //     'usia' => 'required',
+    //     'alamat' => 'required',
+    // ], [
+    //     'nama.required' => 'Nama Lengkap is required (Nama Lengkap harus diisi)',
+    //     'usia.required' => 'Usia is required (Usia harus diisi)',
+    //     'alamat.required' => 'Alamat is required (Alamat harus diisi)'
+    // ]);
     public function action_konsultasi(Request $request)
     {
-        // dd($request);
-        $request->validate([
-            'nama' => 'required',
-            'usia' => 'required',
-            'alamat' => 'required',
-        ], [
-            'nama.required' => 'Nama Lengkap is required (Nama Lengkap harus diisi)',
-            'usia.required' => 'Usia is required (Usia harus diisi)',
-            'alamat.required' => 'Alamat is required (Alamat harus diisi)'
-        ]);
 
         $data = $request->all();
         $jml_gjl_dipilih = 0;
@@ -305,24 +392,19 @@ class PagesController extends Controller
             return redirect('sp-konsultasi');
         }
 
-        $jml_p01 = count($data_penyakit['P01']);
-        $jml_p02 = count($data_penyakit['P02']);
+        // $jml_p01 = count($data_penyakit['P01']);
+        // $jml_p02 = count($data_penyakit['P02']);
 
-        $get_data = $this->perhitungan_diagnosa($data_penyakit);
-        // if($jml_p01 >= 3 && $jml_p02 >= 3) {
-        //     $get_data = $this->perhitungan_diagnosa($data_penyakit);
-        // } else if($jml_p01 >= 3) {
-        //     $get_data = $this->perhitungan_diagnosa($data_penyakit[]);
-        // } else if($jml_p02 >= 3) {
-        //     $get_data = $this->perhitungan_diagnosa($data_penyakit['P02']);
-        // }
-
-
+        if(empty($data_penyakit['P01']) || empty($data_penyakit['P02'])) {
+            $get_data = $this->perhitungan_diagnosa2($data_penyakit);
+        } else {
+            $get_data = $this->perhitungan_diagnosa($data_penyakit);
+        }
 
         $kunjungan = [
-            'nama'          => $request->nama,
-            'usia'          => $request->usia,
-            'alamat'        => $request->alamat,
+            'nama'          => '-',
+            'usia'          => '-',
+            'alamat'        => '-',
             'hasil'         => $get_data['data_diagnosa'],
             'nilai_hasil'   => $get_data['nilai_hasil'],
             'hasil_2'         => $get_data['data_diagnosa2'],

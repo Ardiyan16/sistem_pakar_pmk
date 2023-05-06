@@ -56,36 +56,71 @@
 @endsection
 @section('pageslayout')
     <section id="about" class="about">
-    <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
 
-      <div class="section-header">
-        <h2>Tentang SP-PMK</h2>
-        <p>Berikut merupakan informasi tentang SP-PMK</p>
-      </div>
+            <div class="section-header">
+                <h2>Tentang SP-PMK</h2>
+                <p>Berikut merupakan informasi tentang SP-PMK</p>
+            </div>
 
-      <div class="row gy-4">
-        <div class="col-lg-6">
-          <img src="{{ url('image/sapi.jpg') }}" class="img-fluid rounded-4 mb-4" alt="">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <img src="{{ url('image/sapi.jpg') }}" class="img-fluid rounded-4 mb-4" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <h3  class="content ps-0 ps-lg-5">Apa itu SP-PMK ?</h3>
+                    <div class="content ps-0 ps-lg-5">
+                        <p>
+                            SP-PMK adalah Sistem Pakar Diagnosa Penyakit
+                            Mulut dan Kuku pada Sapi yang merupakan sebuah website
+                            yang digunakan sebagai media konsultasi untuk
+                            mendiagnosis penyakit mulut dan kuku yang menyerang
+                            ternak sapi. Dengan dibangunnya sistem ini diharapkan
+                            dapat membantu para masyarakat khususnya peternak sapi
+                            agar dapat lebih mengetahui informasi tentang gejala-gejala
+                            dan mendiagnosis penyakit serta pengobatan penyakit mulut
+                            dan kuku pada sapi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-lg-6">
-            <h3>Apa itu SP-PMK? ?</h3>
-          <div class="content ps-0 ps-lg-5">
-            <p >
-                SP-PMK adalah Sistem Pakar Diagnosa Penyakit
-                Mulut dan Kuku pada Sapi yang merupakan sebuah website
-                yang digunakan sebagai media konsultasi untuk
-                mendiagnosis penyakit mulut dan kuku yang menyerang
-                ternak sapi. Dengan dibangunnya sistem ini diharapkan
-                dapat membantu para masyarakat khususnya peternak sapi
-                agar dapat lebih mengetahui informasi tentang gejala-gejala
-                dan mendiagnosis penyakit serta pengobatan penyakit mulut
-                dan kuku pada sapi.
-            </p>
-          </div>
-        </div>
-      </div>
+    </section><!-- End About Us Section -->
 
-    </div>
-  </section><!-- End About Us Section -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Penyakit Sering Muncul</h2>
+                <p>Berikut merupakan informasi tentang SP-PMK</p>
+            </div>
+
+            <div class="row gy-4">
+                <table class="table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Penyakit</th>
+                            <th>Jumlah Diagnosa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($penyakit_muncul as $value)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $value->nama_penyakit}}</td>
+                                <td>{{ $value->jml_kunjungan .' kali diagnosa' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
 
 @endsection
